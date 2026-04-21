@@ -5,6 +5,9 @@ interface Props {
 }
 
 const { title, description = "NYC-based Organist and Pianist" } = Astro.props;
+
+// Feature flags — set to true to show, false to hide
+const SHOW_LISTEN = false;
 ---
 
 <!doctype html>
@@ -26,7 +29,7 @@ const { title, description = "NYC-based Organist and Pianist" } = Astro.props;
         <ul>
           <li><a href="/about">About</a></li>
           <li><a href="/events">Events</a></li>
-          <li><a href="https://www.youtube.com/@yilunwangmusic" target="_blank" rel="noopener">Listen</a></li>
+          {SHOW_LISTEN && <li><a href="https://www.youtube.com/@yilunwangmusic" target="_blank" rel="noopener">Listen</a></li>}
           <li><a href="/contact">Contact</a></li>
         </ul>
       </nav>
