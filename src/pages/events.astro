@@ -1,0 +1,182 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const upcoming = [
+  {
+    label: "Every Sunday",
+    title: "Grace Lutheran Church",
+    city: "New York, NY",
+    details: "Regular Sunday service",
+    ticketUrl: "",
+  },
+  // Add more upcoming events here
+];
+
+const past = [
+  { year: "2025", title: "Yilun Wang Doctorate 2nd Year Recital" },
+  { year: "2024", title: "AGO Student Commissioning Project" },
+  { year: "2024", title: "The Cathedral Church of Saint John the Divine — Sunday Post-Evensong Recitals" },
+  { year: "2024", title: "Yilun Wang Doctorate First Year Recital" },
+  { year: "2024", title: "Thomas Ospital Organ Masterclass Recital" },
+  { year: "2023", title: "Recital in Honor of Walter Hilse — Saint Peter's Lutheran Church, Citicorp" },
+  { year: "2023", title: "St. Malachy's – The Actors' Chapel Organ Recital Series" },
+  { year: "2023", title: "NYCAGO Members' Organ Recital" },
+  { year: "2022", title: "Yilun Wang Organ Recital" },
+  { year: "2022", title: "Five Historic Erben Pipe Organ Concerts for Make Music Day" },
+  { year: "2022", title: "The Rev. Dr. John Milton Coleman Memorial Organ Recital Series" },
+  { year: "2022", title: "AGO Member Recital" },
+  { year: "2021", title: "Yilun Wang Organ Recital" },
+  { year: "2019", title: "Germany Tour" },
+];
+
+// Group past events by year
+const byYear: Record<string, string[]> = {};
+for (const e of past) {
+  if (!byYear[e.year]) byYear[e.year] = [];
+  byYear[e.year].push(e.title);
+}
+const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a));
+---
+
+<Layout title="Events — Yilun Wang" description="Upcoming and past performances by Yilun Wang">
+  <section>
+    <h2>Events</h2>
+
+    <div class="section-label">Upcoming</div>
+    <div class="shows-list">
+      {upcoming.map((show) => (
+        <div class="show-row">
+          <div class="show-date">{show.label}</div>
+          <div class="show-info">
+            <span class="venue">{show.title}</span>
+            <span class="city">{show.city}</span>
+          </div>
+          <div class="show-details">{show.details}</div>
+          <div class="show-action">
+            {show.ticketUrl
+              ? <a href={show.ticketUrl} target="_blank" rel="noopener" class="ticket-link">Tickets</a>
+              : <span></span>
+            }
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="past-section">
+      <div class="section-label">Past Events</div>
+      {years.map((year) => (
+        <div class="year-group">
+          <div class="year-heading">{year}</div>
+          <div class="year-events">
+            {byYear[year].map((title) => (
+              <div class="past-event">{title}</div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .section-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 1rem;
+  }
+
+  .shows-list {
+    border-top: 1px solid var(--color-border);
+    margin-bottom: 4rem;
+  }
+
+  .show-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 180px 100px;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .show-date {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+  }
+
+  .show-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .venue { font-size: 1rem; }
+
+  .city {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+  }
+
+  .show-details {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+  }
+
+  .ticket-link {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-text);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .ticket-link:hover { opacity: 0.5; }
+
+  .past-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .year-group {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .year-heading {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    padding-top: 0.15rem;
+  }
+
+  .year-events {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .past-event {
+    font-size: 0.95rem;
+    color: #333;
+  }
+
+  @media (max-width: 700px) {
+    .show-row {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+
+    .show-details { display: none; }
+
+    .year-group {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+  }
+</style>

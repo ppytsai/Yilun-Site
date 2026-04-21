@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Yilun Wang" description="NYC-based Organist and Pianist">
+
+  <!-- Hero: photo left, name right -->
+  <section class="hero">
+    <div class="hero-image">
+      <!-- Drop your main press photo as public/hero.jpg -->
+      <img src="/hero.jpg" alt="Yilun Wang" />
+    </div>
+    <div class="hero-text">
+      <h1>Yilun Wang</h1>
+      <p class="tagline">NYC-based Organist and Pianist</p>
+    </div>
+  </section>
+
+  <!-- Bio + second photo -->
+  <section class="bio-section">
+    <div class="bio-text">
+      <p>
+        Yilun Wang is a multifaceted musician whose artistry spans piano, organ, and harpsichord,
+        with more than two decades of performance experience. Celebrated for both technical
+        brilliance and expressive sensitivity, she has performed at prestigious venues including
+        New York's Cathedral of St. John the Divine, Madison Avenue Presbyterian Church,
+        St. Malachy's Church, St. Peter's Church, the Co-Cathedral of St. Joseph, and the
+        Basilica of St. Patrick's Old Cathedral, as well as internationally at Beijing's National
+        Centre for the Performing Arts, the Bach Haus in Köthen, and Vianden Castle in Luxembourg.
+      </p>
+      <a href="/about" class="read-more">Read more</a>
+    </div>
+    <div class="bio-image">
+      <!-- Drop your second photo as public/hero-2.jpg -->
+      <img src="/hero-2.jpg" alt="Yilun Wang" />
+    </div>
+  </section>
+
+  <!-- Events teaser -->
+  <section class="events-section">
+    <h2>Upcoming</h2>
+    <div class="event-row">
+      <span class="event-when">Every Sunday</span>
+      <span class="event-name">Grace Lutheran Church — Astoria, NY</span>
+      <a href="https://www.youtube.com/@yilunwang" target="_blank" rel="noopener" class="event-link">Livestream</a>
+    </div>
+    <a href="/events" class="all-events">All events →</a>
+  </section>
+
+</Layout>
+
+<style>
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    min-height: calc(100vh - 64px - 8rem);
+    margin-bottom: 6rem;
+  }
+
+  .hero-image img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  .hero-text h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .tagline {
+    color: var(--color-muted);
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+  /* BIO */
+  .bio-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 6rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .bio-text p {
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+
+  .bio-image img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  .read-more {
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-text);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .read-more:hover { opacity: 0.5; }
+
+  /* EVENTS */
+  .events-section {
+    padding-top: 4rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .events-section h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .event-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 1.5rem;
+  }
+
+  .event-when {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    min-width: 120px;
+  }
+
+  .event-name {
+    flex: 1;
+    font-size: 0.95rem;
+  }
+
+  .event-link {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-text);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .event-link:hover { opacity: 0.5; }
+
+  .all-events {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    transition: color 0.2s;
+  }
+
+  .all-events:hover { color: var(--color-text); }
+
+  /* MOBILE */
+  @media (max-width: 700px) {
+    .hero, .bio-section {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .hero-image { order: -1; }
+
+    .event-row { flex-wrap: wrap; gap: 0.5rem; }
+  }
+</style>
