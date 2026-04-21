@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// Feature flags — set to true to show, false to hide
+const SHOW_EVENTS = false;
 ---
 
 <Layout title="Yilun Wang" description="NYC-based Organist and Pianist">
@@ -37,6 +40,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Events teaser -->
+  {SHOW_EVENTS && (
   <section class="events-section">
     <h2>Upcoming</h2>
     <div class="event-row">
@@ -46,6 +50,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
     <a href="/events" class="all-events">All events →</a>
   </section>
+  )}
 
 </Layout>
 
